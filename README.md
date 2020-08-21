@@ -16,6 +16,8 @@
 - JdbcTemplate
 - Jsoup Ver 1.8
 
+## 개발 일지 
+https://github.com/Changhwan-Son/UnlonePlayProject/tree/master/TID
 
 ## UI 설계 
 https://ovenapp.io/project/5OynNXUcj3cSB0qA0f8oUR9fFb5FJhIh#sAx3W
