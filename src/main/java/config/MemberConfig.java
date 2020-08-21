@@ -1,5 +1,6 @@
 package config;
 
+import dao.ArticleDao;
 import dao.MemberDao;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +9,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import service.AuthService;
+import service.CrawlingService;
 
 @Configuration
 @EnableTransactionManagement
@@ -22,6 +24,7 @@ public class MemberConfig {
         ds.setPassword("spring1");
         ds.setInitialSize(2);
         ds.setMaxActive(10);
+        ds.setMaxIdle(10);
         ds.setTestWhileIdle(true);
         ds.setMinEvictableIdleTimeMillis(60000 * 3);
         ds.setTimeBetweenEvictionRunsMillis(10 * 1000);
@@ -41,9 +44,21 @@ public class MemberConfig {
     }
 
     @Bean
+    public ArticleDao articleDao(){
+        return new ArticleDao(dataSource());
+    }
+
+    @Bean
     public AuthService authService() {
         AuthService authService = new AuthService();
         authService.setMemberDao(memberDao());
         return authService;
     }
+
+    @Bean
+    public CrawlingService crawlingService(){
+        CrawlingService crawlingService = new CrawlingService(articleDao());
+        return crawlingService;
+    }
+
 }

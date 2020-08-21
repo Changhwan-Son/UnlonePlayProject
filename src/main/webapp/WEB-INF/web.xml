@@ -32,6 +32,7 @@
                 config.MemberConfig
                 config.MvcConfig
                 config.ControllerConfig
+                config.CrawlConfig
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

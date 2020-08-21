@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import service.AuthService;
+import service.CrawlingService;
 import service.MemberRegisterService;
 
 @Configuration
@@ -18,11 +19,15 @@ public class ControllerConfig {
     private MemberRegisterService memberRegisterService;
 
     @Autowired
+    private CrawlingService crawlingService;
+
+    @Autowired
     private AuthService authService;
 
     @Bean
     public HomeController homeController(){
         HomeController homeController = new HomeController();
+        homeController.setCrawlingService(crawlingService);
         return homeController;
     }
 

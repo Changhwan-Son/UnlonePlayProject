@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.AuthService;
+import service.CrawlingService;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String form(LoginRequest loginRequest) {
+
         return "login/loginForm";
     }
 
@@ -45,6 +47,7 @@ public class LoginController {
             errors.reject("idPasswordNotMatching");
             return "login/loginForm";
         }
+
     }
 
 
