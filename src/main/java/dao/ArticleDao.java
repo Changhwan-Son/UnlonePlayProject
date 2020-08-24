@@ -3,7 +3,10 @@ package dao;
 import model.Article;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ArticleDao {
@@ -23,5 +26,29 @@ public class ArticleDao {
                     article.getArticle_url(),article.getArticle_written_time(), article.getArticle_modified_time(), article.getArticle_crawled_time());
         }
     }
+
+    public List<Article> selectLatest(){
+        String sql = "select * from (select  * from ARTICLE ORDER BY article_id desc limit 12)  as a ORDER BY article_id asc";
+        List<Article> articles = jdbcTemplate.query(sql, new RowMapper<Article>() {
+            public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Article article = new Article();
+
+                article.setArticle_title(rs.getString("article_title"));
+                article.setArticle_content(rs.getString("article_content"));
+                article.setArticle_image(rs.getString("article_image"));
+                article.setArticle_press(rs.getString("article_press"));
+                article.setArticle_theme(rs.getString("article_theme"));
+                article.setArticle_url(rs.getString("article_url"));
+                article.setArticle_crawled_time(rs.getDate("article_crawled_time"));
+                article.setArticle_written_time(rs.getDate("article_written_time"));
+                article.setArticle_modified_time(rs.getDate("article_modified_time"));
+
+                return article;
+            }
+        });
+
+        return articles;
+    }
+
 
 }

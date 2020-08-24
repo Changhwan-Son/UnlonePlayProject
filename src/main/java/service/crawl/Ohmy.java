@@ -24,9 +24,10 @@ public class Ohmy {
             Document doc = Jsoup.connect(url).get();
 
             // 오마이 메인1 url
-            String url1 = url + doc.select("div.droppable.box1_2.fullbox div.thum-screenover a").attr("href");
-            article1.setArticle_url(url1);
+            Elements divTop = doc.select("div#dvTopBoard");
 
+            String url1 = url + divTop.select("div.dvContents.box_in").first().select("a").attr("href");
+            article1.setArticle_url(url1);
             Document doc1 = Jsoup.connect(url1).get();
 
             // 오마이 메인1 제목
@@ -35,10 +36,14 @@ public class Ohmy {
 
             // 오마이 메인1 이미지
             String image1 = doc1.select("div.at_contents table.photoCenter img").attr("src");
+            if(title1.equals(""))
+                title1 = "불러오기 오류";
             article1.setArticle_image(image1);
 
             // 오마이 메인1 내용
             String content1 = doc1.select("div.at_contents").text();
+            if(content1.equals(""))
+                content1 = "불러오기 오류";
             article1.setArticle_content(content1);
 
 
@@ -62,12 +67,14 @@ public class Ohmy {
 
 
             // 오마이 메인2 url
-            String url2 = url + doc.select("div.droppable.box1_2.fullbox div.thum-screenover a").get(1).attr("href");
+            String url2 = url + divTop.select("div.dvContents.box_in").get(1).select("a").attr("href");
             article2.setArticle_url(url2);
 
             Document doc2 = Jsoup.connect(url2).get();
             // 오마이 메인2 제목
             String title2 = doc2.select("div.newstitle h3.tit_subject").text();
+            if(title2.equals(""))
+                title2 = "불러오기 오류";
             article2.setArticle_title(title2);
 
             // 오마이 메인2 이미지
@@ -76,6 +83,8 @@ public class Ohmy {
 
             // 프레시안 메인2 내용
             String content2 = doc2.select("div.at_contents").text();
+            if(content2.equals(""))
+                content2 = "불러오기 오류";
             article2.setArticle_content(content2);
 
             // 오마이 메인2 분야

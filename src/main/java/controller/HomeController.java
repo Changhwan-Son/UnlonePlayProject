@@ -22,10 +22,14 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model){
 
+        // crawlingService.put();
 
-        crawlingService.put();
+        List<Article> articles = crawlingService.getLatestArticles();
+        model.addAttribute("articles", articles);
         return "index";
     }
+
+
 
 
 }

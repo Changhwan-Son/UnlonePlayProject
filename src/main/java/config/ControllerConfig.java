@@ -1,8 +1,6 @@
 package config;
 
-import controller.HomeController;
-import controller.LoginController;
-import controller.RegisterController;
+import controller.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -43,6 +41,19 @@ public class ControllerConfig {
         LoginController controller = new LoginController();
         controller.setAuthService(authService);
         return controller;
+    }
+
+    @Bean
+    public CrawlController crawlController() {
+        CrawlController crawlController = new CrawlController();
+        crawlController.setCrawlingService(crawlingService);
+        return crawlController;
+    }
+
+    @Bean
+    public ArticleController articleController(){
+        ArticleController articleController = new ArticleController();
+        return articleController;
     }
 
 

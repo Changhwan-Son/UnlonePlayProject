@@ -42,7 +42,7 @@ public class LoginController {
             session.setAttribute("authInfo", authInfo);
 
             //  TODO 세션에 authInfo 저장해야 함
-            return "index";
+            return "redirect:/";
         } catch(WrongIdPasswordException e) {
             errors.reject("idPasswordNotMatching");
             return "login/loginForm";
@@ -54,6 +54,6 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

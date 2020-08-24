@@ -21,7 +21,7 @@
     로그인 완료!
 </p>
 <p>
-    <a href="<c:url value='/index'/>">
+    <a href="<c:url value='/'/>">
         홈으로 가기
     </a>
 </p>

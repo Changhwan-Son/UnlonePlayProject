@@ -39,4 +39,12 @@ public class CrawlingService {
 
         return articles.size();
     }
+
+    public List<Article> getLatestArticles(){
+        List<Article> articles = new ArrayList<Article>();
+        articles = articleDao.selectLatest();
+
+        return articles;
+    }
+
 }

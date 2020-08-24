@@ -13,7 +13,7 @@
 </head>
 <body>
 <p>환영합니다. ${registerRequest.name}</p>
-<p><a href="<c:url value='/index'/>">[홈으로 가기]</a></p>
+<p><a href="<c:url value='/'/>">[홈으로 가기]</a></p>
 
 </body>
 </html>
