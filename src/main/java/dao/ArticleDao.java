@@ -42,6 +42,7 @@ public class ArticleDao {
                 article.setArticle_crawled_time(rs.getDate("article_crawled_time"));
                 article.setArticle_written_time(rs.getDate("article_written_time"));
                 article.setArticle_modified_time(rs.getDate("article_modified_time"));
+                article.setArticle_id(rs.getLong("article_id"));
 
                 return article;
             }
@@ -50,5 +51,62 @@ public class ArticleDao {
         return articles;
     }
 
+    public int selectTotalRows() {
+        int count = 0;
+
+        String sql = "SELECT COUNT(article_id) FROM ARTICLE";
+        count = jdbcTemplate.queryForObject(sql, Integer.TYPE);
+
+        return count;
+    }
+
+    public Article selecyById(Long id){
+        String sql = "SELECT * FROM ARTICLE WHERE article_id = " + id;
+
+        List<Article> articles = jdbcTemplate.query(sql, new RowMapper<Article>() {
+            public Article
+            mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Article article = new Article();
+
+                article.setArticle_title(rs.getString("article_title"));
+                article.setArticle_content(rs.getString("article_content"));
+                article.setArticle_image(rs.getString("article_image"));
+                article.setArticle_press(rs.getString("article_press"));
+                article.setArticle_theme(rs.getString("article_theme"));
+                article.setArticle_url(rs.getString("article_url"));
+                article.setArticle_crawled_time(rs.getDate("article_crawled_time"));
+                article.setArticle_written_time(rs.getDate("article_written_time"));
+                article.setArticle_modified_time(rs.getDate("article_modified_time"));
+                article.setArticle_id(rs.getLong("article_id"));
+
+                return article;
+            }
+        });
+        return articles.get(0);
+    }
+
+    public List<Article> selectBoard(int start, int end){
+        String sql = "select * from (select @ROWNUM  := @ROWNUM + 1 AS RN, A.* from (select * from ARTICLE ORDER BY article_id desc) A ) B WHERE RN BETWEEN " + start + " AND " + end;
+        List<Article> articles = jdbcTemplate.query(sql, new RowMapper<Article>() {
+            public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Article article = new Article();
+
+                article.setArticle_title(rs.getString("article_title"));
+                article.setArticle_content(rs.getString("article_content"));
+                article.setArticle_image(rs.getString("article_image"));
+                article.setArticle_press(rs.getString("article_press"));
+                article.setArticle_theme(rs.getString("article_theme"));
+                article.setArticle_url(rs.getString("article_url"));
+                article.setArticle_crawled_time(rs.getDate("article_crawled_time"));
+                article.setArticle_written_time(rs.getDate("article_written_time"));
+                article.setArticle_modified_time(rs.getDate("article_modified_time"));
+                article.setArticle_id(rs.getLong("article_id"));
+
+                return article;
+            }
+        });
+
+        return articles;
+    }
 
 }

@@ -18,7 +18,7 @@
 <div class="frame">
     <div class="header" style="width:100%; height:20%">
         <div style="float: left; width: 25%; ">
-            <h1>웹 페이지 이름</h1>
+            <h1><a href="/">UnlonePlay</a></h1>
         </div>
 
         <c:if test="${empty authInfo}">
@@ -30,13 +30,13 @@
 
         <c:if test="${! empty authInfo }">
             <div style="float: right; width: 20%; ">
-            <h2 style="float:left; width:50%">${authInfo.name}</h2>
+                <h2 style="float:left; width:50%">${authInfo.name}</h2>
                 <a href="<c:url value='/logout'/>"><h2 style="float:left; width:50%">로그아웃</h2></a>
             </div>
         </c:if>
 
         <div style="float: right; width: 45%;">
-            <h2 style="float:right; width:45%">전체 기사 보기</h2>
+            <h2 style="float:right; width:45%"><a href="/list">전체 기사 보기</a></h2>
         </div>
 
     </div>
@@ -58,27 +58,31 @@
             <div class="container_article" style="width:33%; float:left" >
                 <h2>경향신문</h2>
                 <div class="press1_article1">
+
                     <div class="article_image" style="width:30%; float:left; ">
-                        <a>
+                        <a href="/article?id=<%=articles.get(8).getArticle_id()%>">
                             <img src="${articles.get(0).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
 
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(0).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(0).article_content}</p>
+
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"> <a href="/article?id=<%=articles.get(8).getArticle_id()%>">${articles.get(8).article_title} </a></h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"> <a href="/article?id=<%=articles.get(8).getArticle_id()%>">${articles.get(8).article_content} </a></p>
                     </div>
+
+
                 </div>
 
                 <div class="press1_article2">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(1).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(9).getArticle_id()%>">
+                            <img src="${articles.get(9).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(1).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(1).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"> <a href="/article?id=<%=articles.get(9).getArticle_id()%>">${articles.get(9).article_title} </a></h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(9).getArticle_id()%>">${articles.get(9).article_content} </a></p>
                     </div>
                 </div>
             </div>
@@ -91,25 +95,25 @@
                 <h2>조선일보</h2>
                 <div class="press1_article1">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(2).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(0).getArticle_id()%>">
+                            <img src="${articles.get(0).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(2).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(2).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(0).getArticle_id()%>">${articles.get(0).article_title}</a> </h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(0).getArticle_id()%>">${articles.get(0).article_content}</a></p>
                     </div>
                 </div>
 
                 <div class="press1_article2">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(3).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(1).getArticle_id()%>">
+                            <img src="${articles.get(1).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(3).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(3).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(1).getArticle_id()%>">${articles.get(1).article_title}</a> </h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(1).getArticle_id()%>">${articles.get(1).article_content}</a></p>
                     </div>
                 </div>
             </div>
@@ -122,25 +126,25 @@
                 <h2>한겨례</h2>
                 <div class="press1_article1">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
+                        <a href="/article?id=<%=articles.get(4).getArticle_id()%>">
                             <img src="${articles.get(4).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(4).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(4).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(4).getArticle_id()%>">${articles.get(4).article_title} </a></h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(4).getArticle_id()%>">>${articles.get(4).article_content}</a></p>
                     </div>
                 </div>
 
                 <div class="press1_article2">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
+                        <a href="/article?id=<%=articles.get(5).getArticle_id()%>">
                             <img src="${articles.get(5).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(5).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(5).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(5).getArticle_id()%>">${articles.get(5).article_title} </a></h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(5).getArticle_id()%>">${articles.get(5).article_content}</a></p>
                     </div>
                 </div>
             </div>
@@ -156,25 +160,25 @@
                 <h2>중앙일보</h2>
                 <div class="press1_article1">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
+                        <a href="/article?id=<%=articles.get(6).getArticle_id()%>">
                             <img src="${articles.get(6).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(6).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(6).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(6).getArticle_id()%>">${articles.get(6).article_title}</a> </h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(6).getArticle_id()%>">${articles.get(6).article_content}</a></p>
                     </div>
                 </div>
 
                 <div class="press1_article2">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
+                        <a href="/article?id=<%=articles.get(7).getArticle_id()%>">
                             <img src="${articles.get(7).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(7).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(7).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(7).getArticle_id()%>">${articles.get(7).article_title}</a> </h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(7).getArticle_id()%>">${articles.get(7).article_content}</a></p>
                     </div>
                 </div>
             </div>
@@ -185,25 +189,25 @@
                 <h2>오마이뉴스</h2>
                 <div class="press1_article1">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(8).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(10).getArticle_id()%>">
+                            <img src="${articles.get(10).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(8).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(8).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"> <a href="/article?id=<%=articles.get(10).getArticle_id()%>">${articles.get(10).article_title}</a> </h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"> <a href="/article?id=<%=articles.get(10).getArticle_id()%>">${articles.get(10).article_content}</a></p>
                     </div>
                 </div>
 
                 <div class="press1_article2">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(9).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(11).getArticle_id()%>">
+                            <img src="${articles.get(11).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(9).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(9).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"> <a href="/article?id=<%=articles.get(11).getArticle_id()%>">${articles.get(11).article_title} </a></h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"> <a href="/article?id=<%=articles.get(11).getArticle_id()%>">${articles.get(11).article_content}</a></p>
                     </div>
                 </div>
             </div>
@@ -216,25 +220,25 @@
                 <h2>동아일보</h2>
                 <div class="press1_article1">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(10).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(2).getArticle_id()%>">
+                            <img src="${articles.get(2).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(10).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(10).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(2).getArticle_id()%>">${articles.get(2).article_title}</a> </h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(2).getArticle_id()%>">${articles.get(2).article_content}</a></p>
                     </div>
                 </div>
 
                 <div class="press1_article2">
                     <div class="article_image" style="width:30%; float:left; text-align: center">
-                        <a>
-                            <img src="${articles.get(11).article_image}" width="70%" height="30%"/>
+                        <a href="/article?id=<%=articles.get(3).getArticle_id()%>">
+                            <img src="${articles.get(3).article_image}" width="70%" height="30%"/>
                         </a>
                     </div>
                     <div class="article_content" style="width:70%; float:left">
-                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis">${articles.get(11).article_title} </h2>
-                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">${articles.get(11).article_content}</p>
+                        <h2 style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis"><a href="/article?id=<%=articles.get(3).getArticle_id()%>">${articles.get(3).article_title} </a></h2>
+                        <p style="overflow:hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"><a href="/article?id=<%=articles.get(3).getArticle_id()%>">${articles.get(3).article_content}</a></p>
                     </div>
                 </div>
             </div>

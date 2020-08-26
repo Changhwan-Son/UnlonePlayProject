@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Article" %><%--
   Created by IntelliJ IDEA.
   User: son
   Date: 2020/08/24
@@ -21,10 +21,14 @@
 
 <body>
 
+<%
+    Article article = (Article)request.getAttribute("article");
+%>
+
 <div id="wrap">
     <div class="header" style="width:100%; height:20%">
         <div style="float: left; width: 25%; ">
-            <h1>웹 페이지 이름</h1>
+            <h1><a href="/">UnlonePlay</a></h1>
         </div>
 
         <c:if test="${empty authInfo}">
@@ -42,11 +46,41 @@
         </c:if>
 
         <div style="float: right; width: 45%;">
-            <h2 style="float:right; width:45%">전체 기사 보기</h2>
+            <h2 style="float:right; width:45%"><a href="/list">전체 기사 보기</a></h2>
         </div>
 
     </div>
+
+    <div class="container" >
+        <div class="article_press">
+            <h3><%=article.getArticle_press()%></h3>
+        </div>
+
+        <div class="article_title">
+            <h1><%=article.getArticle_title()%></h1>
+        </div>
+
+        <div class="article_date" style="text-align: right">
+            <p>작성:<%=article.getArticle_written_time()%>
+               수정:<%=article.getArticle_modified_time()%></p>
+        </div>
+
+        <div class="article_image"  style="text-align: center">
+            <img src="<%=article.getArticle_image()%>"/>
+        </div>
+
+        <br/>
+        <div class="article_body">
+            <p><%=article.getArticle_content()%></p>
+        </div>
+
+        <div class="article_url">
+            <p>원본 url: <a href="<%=article.getArticle_url()%>"><%=article.getArticle_url()%></a></p>
+        </div>
+    </div>
 </div>
+
+
 
 </body>
 </html>

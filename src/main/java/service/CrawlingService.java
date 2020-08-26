@@ -3,6 +3,7 @@ package service;
 import dao.ArticleDao;
 import dto.ArticleDto;
 import model.Article;
+import model.Paging;
 import service.crawl.*;
 
 import java.util.ArrayList;
@@ -44,6 +45,23 @@ public class CrawlingService {
         List<Article> articles = new ArrayList<Article>();
         articles = articleDao.selectLatest();
 
+        return articles;
+    }
+
+    public int getTotalRows(){
+        int count = 0 ;
+        count = articleDao.selectTotalRows();
+
+        return count;
+    }
+
+    public Article getArticleById(Long id){
+        Article article = articleDao.selecyById(id);
+        return article;
+    }
+
+    public List<Article> selectBoard(Paging paging){
+        List<Article> articles = articleDao.selectBoard(paging.getStart(), paging.getEnd());
         return articles;
     }
 

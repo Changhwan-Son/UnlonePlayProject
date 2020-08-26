@@ -53,6 +53,7 @@ public class ControllerConfig {
     @Bean
     public ArticleController articleController(){
         ArticleController articleController = new ArticleController();
+        articleController.setCrawlingService(crawlingService);
         return articleController;
     }
 

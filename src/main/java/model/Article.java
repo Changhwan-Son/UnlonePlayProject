@@ -93,5 +93,10 @@ public class Article {
     public void setArticle_written_time(Date article_written_time) {
         this.article_written_time = article_written_time;
     }
+
+    public void setArticle_id(Long article_id) {
+        this.article_id = article_id;
+    }
 }
+
 

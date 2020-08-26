@@ -1,11 +1,15 @@
-<%--
+<%@ page import="dao.ArticleDao" %>
+<%@ page import="org.apache.tomcat.jdbc.pool.DataSource" %>
+<%@ page import="service.CrawlingService" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Article" %><%--
   Created by IntelliJ IDEA.
   User: son
   Date: 2020/08/24
   Time: 3:03 오후
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -20,20 +24,23 @@
             text-align :center;
         }
 
-        #bList{
-            text-align :center;
-            margin:0 auto;
+        #bList {
+            text-align: center;
+            margin: 0 auto;
         }
+
     </style>
+
 
 
 </head>
 <body>
 
+
 <div id="wrap">
     <div class="header" style="width:100%; height:20%">
         <div style="float: left; width: 25%; ">
-            <h1>웹 페이지 이름</h1>
+            <h1><a href="/">UnlonePlay</a></h1>
         </div>
 
         <c:if test="${empty authInfo}">
@@ -51,7 +58,7 @@
         </c:if>
 
         <div style="float: right; width: 45%;">
-            <h2 style="float:right; width:45%">전체 기사 보기</h2>
+            <h2 style="float:right; width:45%"><a href="/list">전체 기사 보기</a></h2>
         </div>
 
     </div>
@@ -75,23 +82,46 @@
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
                 </tr>
-            <thead/>
+            </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
+
+               <c:forEach items="${viewAll}" var="list">
+                   <tr>
+                       <td>${list.article_id}</td>
+                       <td>${list.article_press}</td>
+                       <td>${list.article_theme}</td>
+                       <td><a href="article?id=${list.article_id}">${list.article_title}</a></td>
+                       <td>${list.article_written_time}</td>
+                       <td>1</td>
+                   </tr>
+               </c:forEach>
+
             </tbody>
         </table>
+        ${paging.total}
+
+        <div style="display: block; text-align: center;">
+            <c:if test="${paging.startPage != 1 }">
+                <a href="${pageContext.request.contextPath}/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+            </c:if>
+            <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                <c:choose>
+                    <c:when test="${p == paging.nowPage }">
+                        <b>${p }</b>
+                    </c:when>
+                    <c:when test="${p != paging.nowPage }">
+                        <a href="${pageContext.request.contextPath}/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+                    </c:when>
+                </c:choose>
+            </c:forEach>
+            <c:if test="${paging.endPage != paging.lastPage}">
+                <a href="${pageContext.request.contextPath}/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+            </c:if>
+        </div>
     </div>
-    <br>
-    <div id="pageForm">
-        페이지 번호
-    </div>
+
+
+
     <br>
     <div id="searchForm">
         <form>
