@@ -56,12 +56,21 @@ public class Ohmy {
 
             // 오마이 메인1 작성시간
             String written_time1_str = doc1.select("div.info_data").text().split("l")[0];
+            if(written_time1_str.equals("")) {
+                written_time1_str = "20.01.01 00:00";
+            }
             Date written_time1 = dateFormat.parse(written_time1_str);
             article1.setArticle_written_time(written_time1);
 
 
             // 오마이 메인1 수정시간
-            String modified_time1_str = doc1.select("div.info_data").text().split("l")[1].substring(8);
+            String modified_time1_str = "";
+            if(!written_time1_str.equals("20.01.01 00:00")) {
+                modified_time1_str = doc1.select("div.info_data").text().split("l")[1].substring(8);
+            }
+            else{
+                modified_time1_str = "20.01.01 00:00";
+            }
             Date modified_time1 = dateFormat.parse(modified_time1_str);
             article1.setArticle_modified_time(modified_time1);
 
@@ -93,11 +102,20 @@ public class Ohmy {
 
             // 오마이 메인2 작성시간
             String written_time2_str = doc1.select("div.info_data").text().split("l")[0];
+            if(written_time2_str.equals("")) {
+                written_time2_str = "20.01.01 00:00";
+            }
             Date written_time2 = dateFormat.parse(written_time2_str);
             article2.setArticle_written_time(written_time2);
 
             // 오마이 메인2 수정시간
-            String modified_time2_str = doc1.select("div.info_data").text().split("l")[1].substring(8);
+            String modified_time2_str = "";
+            if(!written_time2_str.equals("20.01.01 00:00")) {
+                modified_time2_str =doc1.select("div.info_data").text().split("l")[1].substring(8);
+            }
+            else{
+                modified_time2_str = "20.01.01 00:00";
+            }
             Date modified_time2 = dateFormat.parse(modified_time2_str);
             article2.setArticle_modified_time(modified_time2);
 

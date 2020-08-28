@@ -1,6 +1,7 @@
 package config;
 
 import dao.ArticleDao;
+import dao.CommentDao;
 import dao.MemberDao;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import service.AuthService;
+import service.CommentService;
 import service.CrawlingService;
 
 @Configuration
@@ -39,6 +41,11 @@ public class MemberConfig {
     }
 
     @Bean
+    public CommentDao commentDao(){
+        return new CommentDao(dataSource());
+    }
+
+    @Bean
     public MemberDao memberDao() {
         return new MemberDao(dataSource());
     }
@@ -59,6 +66,12 @@ public class MemberConfig {
     public CrawlingService crawlingService(){
         CrawlingService crawlingService = new CrawlingService(articleDao());
         return crawlingService;
+    }
+
+    @Bean
+    public CommentService commentService(){
+        CommentService commentService = new CommentService(commentDao());
+        return commentService;
     }
 
 }

@@ -28,7 +28,7 @@ public class ArticleDao {
     }
 
     public List<Article> selectLatest(){
-        String sql = "select * from (select  * from ARTICLE ORDER BY article_id desc limit 12)  as a ORDER BY article_id asc";
+        String sql = "select * from (select  * from ARTICLE ORDER BY article_id desc limit 10)  as a ORDER BY article_id asc";
         List<Article> articles = jdbcTemplate.query(sql, new RowMapper<Article>() {
             public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Article article = new Article();
@@ -86,7 +86,7 @@ public class ArticleDao {
     }
 
     public List<Article> selectBoard(int start, int end){
-        String sql = "select * from (select @ROWNUM  := @ROWNUM + 1 AS RN, A.* from (select * from ARTICLE ORDER BY article_id desc) A ) B WHERE RN BETWEEN " + start + " AND " + end;
+        String sql = "select * from (select @ROWNUM  := @ROWNUM + 1 AS RN, A.* from (select * from ARTICLE ORDER BY article_id desc) A WHERE (@ROWNUM:=0)=0 ) B WHERE RN BETWEEN " + start + " AND " + end;
         List<Article> articles = jdbcTemplate.query(sql, new RowMapper<Article>() {
             public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Article article = new Article();

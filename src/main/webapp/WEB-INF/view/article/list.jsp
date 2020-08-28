@@ -58,7 +58,7 @@
         </c:if>
 
         <div style="float: right; width: 45%;">
-            <h2 style="float:right; width:45%"><a href="/list">전체 기사 보기</a></h2>
+            <h2 style="float:right; width:45%"><a href="/list?nowPage=1">전체 기사 보기</a></h2>
         </div>
 
     </div>
@@ -98,11 +98,11 @@
 
             </tbody>
         </table>
-        ${paging.total}
+
 
         <div style="display: block; text-align: center;">
             <c:if test="${paging.startPage != 1 }">
-                <a href="${pageContext.request.contextPath}/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+                <a href="${pageContext.request.contextPath}/list?nowPage=${paging.startPage - 1 }">&lt;</a>
             </c:if>
             <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
                 <c:choose>
@@ -110,12 +110,12 @@
                         <b>${p }</b>
                     </c:when>
                     <c:when test="${p != paging.nowPage }">
-                        <a href="${pageContext.request.contextPath}/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+                        <a href="${pageContext.request.contextPath}/list?nowPage=${p }">${p }</a>
                     </c:when>
                 </c:choose>
             </c:forEach>
             <c:if test="${paging.endPage != paging.lastPage}">
-                <a href="${pageContext.request.contextPath}/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+                <a href="${pageContext.request.contextPath}/list?nowPage=${paging.endPage+1 }">&gt;</a>
             </c:if>
         </div>
     </div>

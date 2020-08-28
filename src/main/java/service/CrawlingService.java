@@ -4,11 +4,14 @@ import dao.ArticleDao;
 import dto.ArticleDto;
 import model.Article;
 import model.Paging;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import service.crawl.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableScheduling
 public class CrawlingService {
 
     private ArticleDao articleDao;
@@ -24,21 +27,22 @@ public class CrawlingService {
         this.articleDao = articleDao;
     }
 
-    public int put(){
+    @Scheduled(fixedDelay = 3600000)
+    public void put(){
         List<Article> articles = new ArrayList<Article>();
 
         articles.addAll(chosun.crawl());
         articles.addAll(donga.crawl());
         articles.addAll(hankyure.crawl());
         articles.addAll(joongang.crawl());
-        articles.addAll(kyunghyang.crawl());
+        //articles.addAll(kyunghyang.crawl());
         articles.addAll(ohmy.crawl());
 
 
-
+        System.out.println("scheduler ");
         articleDao.insert(articles);
 
-        return articles.size();
+
     }
 
     public List<Article> getLatestArticles(){
@@ -61,6 +65,7 @@ public class CrawlingService {
     }
 
     public List<Article> selectBoard(Paging paging){
+
         List<Article> articles = articleDao.selectBoard(paging.getStart(), paging.getEnd());
         return articles;
     }

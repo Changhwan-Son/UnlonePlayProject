@@ -32,7 +32,7 @@
         </c:if>
 
         <div style="float: right; width: 45%;">
-            <h2 style="float:right; width:45%"><a href="/list">전체 기사 보기</a></h2>
+            <h2 style="float:right; width:45%"><a href="/list?nowPage=1">전체 기사 보기</a></h2>
         </div>
 
     </div>

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import service.AuthService;
+import service.CommentService;
 import service.CrawlingService;
 import service.MemberRegisterService;
 
@@ -21,6 +22,9 @@ public class ControllerConfig {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Bean
     public HomeController homeController(){
@@ -54,6 +58,7 @@ public class ControllerConfig {
     public ArticleController articleController(){
         ArticleController articleController = new ArticleController();
         articleController.setCrawlingService(crawlingService);
+        articleController.setCommentService(commentService);
         return articleController;
     }
 

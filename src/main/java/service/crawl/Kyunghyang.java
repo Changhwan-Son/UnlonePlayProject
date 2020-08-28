@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class Kyunghyang {
     public List<Article> crawl() {
 
@@ -19,6 +21,7 @@ public class Kyunghyang {
         String url = "http://www.khan.co.kr";
         while(true) {
             try {
+                sleep(1000);
                 Document doc = Jsoup.connect(url).get();
 
                 // 경향 메인1 제목
@@ -108,6 +111,7 @@ public class Kyunghyang {
 
                 list.add(article1);
                 list.add(article2);
+
 
                 break;
             } catch (Exception e) {
